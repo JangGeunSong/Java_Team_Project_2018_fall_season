@@ -42,6 +42,27 @@ public class EntryPanel extends JPanel {
         nameLabel.setForeground(Color.ORANGE);
         this.add(nameLabel);
     }
+    
+    public EntryPanel(EntryComponent E){
+    	setLayout(null);
+    	setBackground(Color.BLACK);
+    	this.E = E;
+    	nameLabel = new JLabel(this.E.name);
+        normal = new JLabel(this.E.image);
+        velocity = 0;
+        normal.setBounds(0,0,700,600);
+        this.add(normal);
+
+        nameLabel.setFont(new Font("궁서체", Font.BOLD, 30));
+        nameLabel.setBounds(300,710,180,40);
+        nameLabel.setForeground(Color.ORANGE);
+        this.add(nameLabel);
+    }
+    
+    public void paintComponent(Graphics g) {
+    	super.paintComponent(g);
+    	g.drawImage(E.cdImage, 0, 0, 100, 100, this);
+    }
 
     public int getVelocity(){
         return this.velocity;
@@ -81,5 +102,15 @@ public class EntryPanel extends JPanel {
     public EntryComponent getEntryComponent() {
     	return this.E;
     }
+    
+    public void setSizeofElement() {
+    	normal.setVisible(false);
+    	nameLabel.setVisible(false);
+    }
+    
+    public void setReturnSize() {
+    	normal.setVisible(true);
+    	nameLabel.setVisible(true);
+    }
+    
 }
-//change MS949
