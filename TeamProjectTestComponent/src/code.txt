@@ -1,9 +1,0 @@
-8
-Images/Dahyun/a.jpg 다현 0
-Images/Mina/a.jpg 민아 0
-Images/Sunmi/a.jpg 선미 0
-Images/Naeun/a.jpg 손나은 0
-Images/Suzy/a.jpg 수지 0
-Images/IU/a.jpg 아이유 0
-Images/Jiyoung/a.jpg 안지영 0
-Images/Somi/a.jpg 소미 0
