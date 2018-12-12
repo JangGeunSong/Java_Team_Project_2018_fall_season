@@ -151,5 +151,17 @@ public class getImgRes {
 	public void sortAllImgList() {
 		Arrays.sort(allImgList);
 	}
+	
+	public void sendInformation(EntryComponent E) {
+		for(int i = 0; i < numOfImg; i++) {
+			if(E == allImgList[i]) {
+				allImgList[i] = E;
+			}
+		}
+	}
+	
+	public int getNumofImg() {
+		return this.numOfImg;
+	}
 
 }
