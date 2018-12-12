@@ -87,19 +87,18 @@ public class UserDefinedHistoryPanel extends JPanel{
         //
         //scroll = new JScrollPane(this);
         entryTree = new EntryPanel[entryNum+1];
-
+        
         //1: 0
         //2: -1 1
         //4: -2 -1 1 2
         //8 -3 -2 -1 1 2 3
 
-
-
         for(int i=1;i<entryNum;i++) {
-            entryTree[i]=root[i];
+            entryTree[i]= new EntryPanel(new EntryComponent(root[i].getEntryComponent()));
             entryTree[i].setSize(new Dimension(compoWidth,compoHeight));
             entryTree[i].setBackground(Color.black);
             entryTree[i].add(new JLabel(Integer.toString(i)));
+            entryTree[i].setSizeofElement();
             entryTree[i].addMouseListener(HoverL);
             add(entryTree[i]);
         }
@@ -124,6 +123,7 @@ public class UserDefinedHistoryPanel extends JPanel{
     	public void mouseEntered(MouseEvent e) {
     		EntryPanel target = (EntryPanel)e.getSource();
     		savePt = target.getLocation();
+    		target.setReturnSize();
     		if(savePt.x < 700) {
     			if(savePt.y < 250) {
             viewingPanel.setEntryComponent(target.getEntryComponent());
@@ -182,8 +182,9 @@ public class UserDefinedHistoryPanel extends JPanel{
     	}
     	@Override
     	public void mouseExited(MouseEvent e) {
-    		JPanel target = (JPanel)e.getSource();
+    		EntryPanel target = (EntryPanel)e.getSource();
     		viewingPanel.setVisible(false);
+    		target.setSizeofElement();
     	}
     	@Override
     	public void mousePressed(MouseEvent e) {
