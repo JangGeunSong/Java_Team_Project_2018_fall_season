@@ -12,7 +12,8 @@ public class MainGamePanel extends JPanel{
     //
     private PanelClickDetect dteP;
     //
-    private Timer aniTimer, resetTimer;
+    private Timer aniTimerLeft, resetTimerLeft;
+    private Timer aniTimerRight, resetTimerRight;
     //
     private String Type;
     //
@@ -45,10 +46,10 @@ public class MainGamePanel extends JPanel{
         this.parentPanel = parent;
         this.initialComponent = new EntryComponent("Images/QuestionMark/a.jpg","Images/QuestionMark/a.jpg","Who?", 0);
 
-        if(Type == "ø©¿⁄") {
+        if(Type == "Ïó¨Ïûê") {
         	imString = new getImgRes("src/code.txt", nRound);
         }
-        else if(Type == "≥≤¿⁄"){
+        else if(Type == "ÎÇ®Ïûê"){
         	imString = new getImgRes("src/code1.txt", nRound);
         }
 
@@ -74,7 +75,7 @@ public class MainGamePanel extends JPanel{
         }
 
         UDHF = new UserDefinedHistoryFrame(nElem + 1, eTree);
-        UDHF.setTitle("«ˆ¿ÁªÛ»≤");
+        UDHF.setTitle("ÌòÑÏû¨ÏÉÅÌô©");
         UDHF.setVisible(false);
 
         System.out.println(this.Type);
@@ -105,6 +106,70 @@ public class MainGamePanel extends JPanel{
 
         btnL = new ButtonListener();
         btnH.addActionListener(btnL);
+        
+        
+        resetTimerRight = new Timer(2500, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent a){
+                resetTimerRight.start();
+                if((nNextMatch)/2 == 0){
+                    System.out.println("Panel Change!");
+                    signal = 1;
+                }
+                reset(nNextMatch - 1, nNextMatch, signal, eTree[1]);
+                resetTimerRight.stop();
+            }
+        });
+        
+        resetTimerLeft = new Timer(2500, new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                resetTimerLeft.start();
+                if((nNextMatch)/2 == 0){
+                    System.out.println("Panel Change!");
+                    signal = 1;
+                }
+                reset(nNextMatch - 1, nNextMatch, signal, eTree[1]);
+                resetTimerLeft.stop();
+            }
+        });
+        
+        //make Two reset Timer left and right side.
+        
+        aniTimerLeft = new Timer(1, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                aniTimerLeft.start();
+                if(leftPanel.getPtX() < 400){
+                    leftPanel.setPtX(leftPanel.getPtX() + leftPanel.getVelocity());
+                    leftPanel.setLocation(leftPanel.getPtX(), leftPanel.getPtY());
+                    leftPanel.repaint();
+                    aniTimerLeft.setRepeats(true);
+                }
+                else if(leftPanel.getPtX() >= 400){
+                    resetTimerLeft.start();
+                    aniTimerLeft.stop();
+                }
+            }
+        });
+        
+        aniTimerRight = new Timer(1, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                aniTimerRight.start();
+                if(rightPanel.getPtX() > 400){
+                    rightPanel.setPtX(rightPanel.getPtX() - rightPanel.getVelocity());
+                    rightPanel.setLocation(rightPanel.getPtX(), rightPanel.getPtY());
+                    rightPanel.repaint();
+                    aniTimerLeft.setRepeats(true);
+                }
+                else if(rightPanel.getPtX() <= 400){
+                    resetTimerRight.start();
+                    aniTimerRight.stop();
+                }
+            }
+        });
+        //make Two animation Timer left and right side.
 
     }
 
@@ -132,7 +197,7 @@ public class MainGamePanel extends JPanel{
         }
         else{
         	this.parentPanel.disableMGP();
-        	this.parentPanel.addEDP(E, parentPanel);
+        	this.parentPanel.addEDP(E, imString, parentPanel);
         }
     }
 
@@ -151,84 +216,49 @@ public class MainGamePanel extends JPanel{
         public void mouseClicked(MouseEvent e){
             Object obj = e.getSource();
             if(obj == rightPanel){
-                nWinner = nNextMatch;
-                Tree[(nNextMatch)/2] = rightPanel;
-                eTree[(nNextMatch)/2] = rightPanel.getEntryComponent();
-                UDHF.sendInformation(nNextMatch/2, rightPanel.getEntryComponent());
-                nNextMatch = nNextMatch - 2;
-                rightPanel.setVelocity(8);
-                leftPanel.setVisible(false);
-                //Tree.get(nNextMatch/2).add(Tree.get(nWinner));
-                aniTimer = new Timer(1, new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e){
-                        aniTimer.start();
-                        if(rightPanel.getPtX() > 400){
-                            rightPanel.setPtX(rightPanel.getPtX() - rightPanel.getVelocity());
-                            rightPanel.setLocation(rightPanel.getPtX(), rightPanel.getPtY());
-                            rightPanel.repaint();
-                            aniTimer.setRepeats(true);
-                        }
-                        else if(rightPanel.getPtX() <= 400){
-                            resetTimer = new Timer(2500, new ActionListener(){
-                                @Override
-                                public void actionPerformed(ActionEvent e){
-                                    resetTimer.start();
-                                    if((nNextMatch)/2 == 0){
-                                        System.out.println("Panel Change!");
-                                        signal = 1;
-                                    }
-                                    reset(nNextMatch - 1, nNextMatch, signal, eTree[1]);
-                                    resetTimer.stop();
-                                }
-                            });
-                            resetTimer.start();
-                            aniTimer.stop();
-                        }
-                    }
-                });
-                aniTimer.start();
-            }
+            	if(aniTimerRight.isRunning()) {
+            		
+            	}
+            	else {
+            		if(resetTimerRight.isRunning()) {
+            			
+            		}
+            		else{
+            			nWinner = nNextMatch;
+            			Tree[(nNextMatch)/2] = rightPanel;
+                    	eTree[(nNextMatch)/2] = rightPanel.getEntryComponent();
+                    	UDHF.sendInformation(nNextMatch/2, rightPanel.getEntryComponent());
+                    	nNextMatch = nNextMatch - 2;
+                    	rightPanel.setVelocity(8);
+                    	leftPanel.setVisible(false);
+                    	//Tree.get(nNextMatch/2).add(Tree.get(nWinner));
+                    	aniTimerRight.start();
+            		}
+            	}//if - else
+            }//if-else
             else if(obj == leftPanel){
-                nWinner = nNextMatch + 1;
-                Tree[(nNextMatch)/2] = leftPanel;
-                eTree[(nNextMatch)/2] = leftPanel.getEntryComponent();
-                UDHF.sendInformation(nNextMatch/2, leftPanel.getEntryComponent());
-                nNextMatch = nNextMatch - 2;
-                leftPanel.setVelocity(8);
-                rightPanel.setVisible(false);
-                //Tree.get(nNextMatch/2).add(Tree.get(nWinner));
-                aniTimer = new Timer(1, new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e){
-                        aniTimer.start();
-                        if(leftPanel.getPtX() < 400){
-                            leftPanel.setPtX(leftPanel.getPtX() + leftPanel.getVelocity());
-                            leftPanel.setLocation(leftPanel.getPtX(), leftPanel.getPtY());
-                            leftPanel.repaint();
-                            aniTimer.setRepeats(true);
-                        }
-                        else if(leftPanel.getPtX() >= 400){
-                            resetTimer = new Timer(2500, new ActionListener() {
-                                @Override
-                                public void actionPerformed(ActionEvent a){
-                                    resetTimer.start();
-                                    if((nNextMatch)/2 == 0){
-                                        System.out.println("Panel Change!");
-                                        signal = 1;
-                                    }
-                                    reset(nNextMatch - 1, nNextMatch, signal, eTree[1]);
-                                    resetTimer.stop();
-                                }
-                            });
-                            resetTimer.start();
-                            aniTimer.stop();
-                        }
-                    }
-                });
-                aniTimer.start();
-            }
-        }
+            	if(aniTimerLeft.isRunning()) {
+            		
+            	}
+            	else{
+            		if(resetTimerLeft.isRunning()) {
+            			
+            		}
+            		else{
+            			nWinner = nNextMatch + 1;
+            			Tree[(nNextMatch)/2] = leftPanel;
+                        eTree[(nNextMatch)/2] = leftPanel.getEntryComponent();
+                        UDHF.sendInformation(nNextMatch/2, leftPanel.getEntryComponent());
+                        nNextMatch = nNextMatch - 2;
+                        leftPanel.setVelocity(8);
+                        rightPanel.setVisible(false);
+                        //Tree.get(nNextMatch/2).add(Tree.get(nWinner));
+                        aniTimerLeft.start();
+            		}
+            		
+            	}//if - else
+            }//if-else
+        }//mouseClicked()
         @Override
         public void mousePressed(MouseEvent e){
 
