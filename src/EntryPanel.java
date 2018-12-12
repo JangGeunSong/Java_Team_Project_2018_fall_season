@@ -82,3 +82,4 @@ public class EntryPanel extends JPanel {
     	return this.E;
     }
 }
+//change MS949
