@@ -19,6 +19,14 @@ public class EntryComponent implements Comparable<EntryComponent>{
         image2.setImage(cdImage.getScaledInstance(700, 800, Image.SCALE_SMOOTH));
     	*/
     }
+    
+    public EntryComponent(EntryComponent E) {
+    	this.image = E.image;
+    	this.image2 = E.image2;
+    	this.name = E.name;
+    	this.victoryNum = E.victoryNum;
+    	cdImage = image.getImage();
+    }
 
 	@Override
 	public int compareTo(EntryComponent arg) {
