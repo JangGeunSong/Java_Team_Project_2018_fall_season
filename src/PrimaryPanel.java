@@ -29,8 +29,8 @@ public class PrimaryPanel extends JPanel{
         this.add(MGP);
     }
 
-    public void addEDP(EntryComponent E, PrimaryPanel p) {
-    	EDP = new EndingPanel(E, p);
+    public void addEDP(EntryComponent E, getImgRes imString, PrimaryPanel p) {
+    	EDP = new EndingPanel(E, imString, p);
     	EDP.setBounds(0,0,1440,900);
     	this.add(EDP);
     }
