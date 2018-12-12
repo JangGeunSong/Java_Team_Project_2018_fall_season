@@ -22,7 +22,7 @@ public class EntryPanel extends JPanel {
         normal.setBounds(0,0,700,600);
         this.add(normal);
 
-        nameLabel.setFont(new Font("�ü�ü", Font.BOLD, 30));
+        nameLabel.setFont(new Font("궁서체", Font.BOLD, 30));
         nameLabel.setBounds(300,710,180,40);
         nameLabel.setForeground(Color.ORANGE);
         this.add(nameLabel);
@@ -37,7 +37,7 @@ public class EntryPanel extends JPanel {
         normal.setBounds(0,0,700,600);
         this.add(normal);
 
-        nameLabel.setFont(new Font("�ü�ü", Font.BOLD, 30));
+        nameLabel.setFont(new Font("궁서체", Font.BOLD, 30));
         nameLabel.setBounds(300,710,180,40);
         nameLabel.setForeground(Color.ORANGE);
         this.add(nameLabel);
