@@ -15,15 +15,15 @@ public class UserDefinedInstalizingWorldCupPanel extends JPanel {
     private JRadioButton [] sexRadioButton;
     private JRadioButton [] scaleRadioButton;
 
-    private String [] sexText = {"³²ÀÚ", "¿©ÀÚ"};
-    private String [] scaleText = {"8°­", "16°­", "32°­"};
+    private String [] sexText = {"ë‚¨ì", "ì—¬ì"};
+    private String [] scaleText = {"8ê°•", "16ê°•", "32ê°•"};
 
-    ///ÆĞ³Î±¸¼º¿ä¼Ò
+    ///íŒ¨ë„êµ¬ì„±ìš”ì†Œ
     private JLabel titleLabel;
     private JButton startButton;
     private int isStartButtonClicked;
     private PrimaryPanel parentPanel;
-
+    private ImageIcon backGround;
     ////
 
 
@@ -41,9 +41,11 @@ public class UserDefinedInstalizingWorldCupPanel extends JPanel {
         setPreferredSize(new Dimension(1440, 900));
         setLayout(null);
         setBounds(0,0,1440,900);
+        
+        backGround = new ImageIcon("Images/BackGround/BackGround.jpg");
 
         //
-        titleLabel = new JLabel("ÀÌ»óÇü¿ùµåÄÅ");
+        titleLabel = new JLabel("ì´ìƒí˜•ì›”ë“œì»µ");
         titleLabel.setPreferredSize(new Dimension(500,50));
         titleLabel.setFont(new Font("", Font.BOLD, 55));
 
@@ -129,12 +131,17 @@ public class UserDefinedInstalizingWorldCupPanel extends JPanel {
     } //UserDefinedInstalizingWorldCupPanel()
 
 
-    //ï¿½ì½æ´¹ì‡°ï¿½ï¿½
+    //ì‹œì‘ë²„íŠ¼ì„ ëˆŒë €ëŠ”ì§€ ì¸ì§€í•˜ê¸°ìœ„í•œ ë©”ì†Œë“œ
     public int GetIsStartButtonClicked() {
         return isStartButtonClicked;
     }
     //
 
+    
+    public void paintComponenet(Graphics g) {
+    	super.paintComponents(g);
+    	g.drawImage(backGround.getImage(), 0, 0, null);
+    }
 
     private class BtnListener implements ActionListener, ItemListener{
 
@@ -155,23 +162,23 @@ public class UserDefinedInstalizingWorldCupPanel extends JPanel {
 
             if(e.getStateChange()==ItemEvent.DESELECTED)
                 return;
-            if(sexRadioButton[0].isSelected()) //³²ÀÚ¸¦ ¼±ÅÃÇßÀ»¶§
+            if(sexRadioButton[0].isSelected()) //ë‚¨ìë¥¼ ì„ íƒí–ˆì„ë•Œ
             {
-                parentPanel.setnSex("³²ÀÚ");
+                parentPanel.setnSex("ë‚¨ì");
             }
-            else if(sexRadioButton[1].isSelected()) //¿©ÀÚ¸¦ ¼±ÅÃÇßÀ»¶§
+            else if(sexRadioButton[1].isSelected()) //ì—¬ìë¥¼ ì„ íƒí–ˆì„ë•Œ
             {
-                parentPanel.setnSex("¿©ÀÚ");
+                parentPanel.setnSex("ì—¬ì");
             }
-            if(scaleRadioButton[0].isSelected())//8°­À» ¼±ÅÃÇßÀ»¶§
+            if(scaleRadioButton[0].isSelected())//8ê°•ì„ ì„ íƒí–ˆì„ë•Œ
             {
                 parentPanel.setnRound(8);
             }
-            else if(scaleRadioButton[1].isSelected())//16°­À» ¼±ÅÃÇßÀ»¶§
+            else if(scaleRadioButton[1].isSelected())//16ê°•ì„ ì„ íƒí–ˆì„ë•Œ
             {
                 parentPanel.setnRound(16);
             }
-            else if(scaleRadioButton[2].isSelected())//32°­À» ¼±ÅÃÇßÀ»¶§
+            else if(scaleRadioButton[2].isSelected())//32ê°•ì„ ì„ íƒí–ˆì„ë•Œ
             {
                 parentPanel.setnRound(32);
             }
