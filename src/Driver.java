@@ -3,7 +3,7 @@ import javax.swing.*;
 
 public class Driver {
     public static void main(String[] args){
-        JFrame f = new JFrame("testFrame");
+        JFrame f = new JFrame("이상형 월드컵");
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         UserDefinedInstalizingWorldCupPanel startPanel = new UserDefinedInstalizingWorldCupPanel();
