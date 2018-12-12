@@ -131,7 +131,7 @@ public class UserDefinedInstalizingWorldCupPanel extends JPanel {
     } //UserDefinedInstalizingWorldCupPanel()
 
 
-    //시작버튼을 눌렀는지 인지하기위한 메소드
+    //占쎌겱域뱀눖占쏙옙
     public int GetIsStartButtonClicked() {
         return isStartButtonClicked;
     }
@@ -187,3 +187,4 @@ public class UserDefinedInstalizingWorldCupPanel extends JPanel {
     } //BtnListener class
 
 } //UserDefinedInstalizingWorldCupPanel class
+//change MS949
