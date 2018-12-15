@@ -7,6 +7,8 @@ The history of the Whole tournament save the "History Panel", if you click the "
 
 At end of the game, result panel would be shown, and the panel  display the winner on the this tournament, and show the data how many winning each object.
 
+This porject is completed at 12/16/2018. This project change the data processing on the local data base that using MySql. So, lib is added the JDBC so, you need to add the project before the start this project on your IDE setting.
+
 // 여기서부터는 한국어로 진행
 
 우선 일차적인 자바 프로젝트를 하기전에 만들어둔 곳입니다. 모으신 자료들이나 코드 만드신것들 여기다가 추가하고 사용하시면 될거 같아서 일단 만들어 두겠습니다.
@@ -19,3 +21,4 @@ At end of the game, result panel would be shown, and the panel  display the winn
 
 이 이상형 월드컵에서 주목할 점은 현재 토너먼트의 진행상황을 확인할 수 있다는 것입니다. 메인 게임 화면에서 "HISTORY"버튼을 누르게 되면 현재 토너먼트가 어떻게 진행되어가고 있는지에 대해 확인할 수 있으며 이에 따라 지금이 몇강인지를 확인할 수 있습니다.
 
+이 프로젝트는 2018년 12월 16일자로 완성되었습니다. 초반부의 생성과정이후 저희는 로컬 데이터베이스를 사용하여 데이터를 관리하는 방식으로 넘어왔습니다. 이에 대한 실행을 위해 lib 폴더에 JDBC 파일이 있으니 IDE에서 실행할때 이를 애드하여 사용하기시 바랍니다. 또 이에 따라 DB file이 추가 되었으며 클래스 이름도 조금 달라졌습니다. 이에 참고하시길 바랍니다.
