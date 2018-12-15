@@ -17,4 +17,4 @@ public class Driver {
         //프레임을 보이도록 setVisible(true)로 변경
     }
 }
-//change MS949
+//UTF-8 encoding changed
