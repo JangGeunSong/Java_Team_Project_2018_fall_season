@@ -164,4 +164,3 @@ public class UserDefinedInstalizingWorldCupPanel extends JPanel {   //JPanel을 
     } //BtnListener class
 
 } //UserDefinedInstalizingWorldCupPanel class
-//change MS949
